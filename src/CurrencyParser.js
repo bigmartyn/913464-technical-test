@@ -1,16 +1,37 @@
-/*	PARSE DECIMAL CURRENCY STRINGS AND RETURN VALUE AS INTEGER NUMBER OF UNITS
+/*	PARSE DECIMAL MONEY STRINGS AND RETURN VALUE AS INTEGER NUMBER OF UNITS
  */
 
 function CurrencyParser() {
-    this.parse = function(currencyString) {
-        var hundreds, parts, units;
+    var currentFormat = 'GBP';
+    var formats = {
+        'GBP': '([£]*)([^\\.p]*)(\\.*)([^p]*)([p]*)',
+        'USD': '([$]*)([^\\.¢]*)(\\.*)([^¢]*)([¢]*)'
+    };
 
-		currencyString = currencyString.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-        if (currencyString == "") {
+    /*  set currency code for parser
+     */
+    this.setCurrency = function(currency) {
+        var result = false;
+
+        if (formats.hasOwnProperty(currency)) {
+            currentFormat = currency;
+            result = true;
+        }
+        return result;
+    }
+
+    /*  parse money strings using a regexp
+     */
+    this.parse = function(moneyString) {
+        var hundreds, matcher, parts, units;
+
+		moneyString = moneyString.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        if (moneyString == "") {
 			throw new Error("empty string");
         }
 
-        parts = currencyString.match(/([£]*)([^\.p]*)(\.*)([^p]*)([p]*)/);
+        matcher = new RegExp(formats[currentFormat]);
+        parts = moneyString.match(matcher);
         hundreds = parts[2];
         units = parts[4];
 

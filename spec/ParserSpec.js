@@ -74,4 +74,16 @@ describe("Parser", function() {
         expect(parser.parse("£001.41p")).toEqual(141);
     });
 
+    it("should be possible to set USD as the currency format and parse dollars", function() {
+        expect(parser.setCurrency("USD")).toEqual(true);
+        expect(parser.parse("$12.34")).toEqual(1234);
+        expect(parser.parse("34¢")).toEqual(34);
+        expect(parser.parse("$34")).toEqual(3400);
+    });
+
+    it("should reject an attempt to set an unknown currency", function() {
+        expect(parser.setCurrency("EUR")).toEqual(false);
+    });
+
+
 });
