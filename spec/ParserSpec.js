@@ -43,10 +43,16 @@ describe("Parser", function() {
         expect(parser.parse("£10")).toEqual(1000);
     });
 
-    it("should accept anumber with leading and trailing symbols", function() {
+    it("should accept a number with leading and trailing symbols", function() {
         expect(parser.parse("£1.87p")).toEqual(187);
         expect(parser.parse("£1p")).toEqual(100);
         expect(parser.parse("£1.p")).toEqual(100);
+    });
+
+    it("should round multiple decimal places to two", function() {
+        expect(parser.parse("4.235p")).toEqual(424);
+        expect(parser.parse("4.234p")).toEqual(423);
+        expect(parser.parse("£1.257422457p")).toEqual(126);
     });
 
     it("should reject numbers with no digits", function() {
