@@ -1,6 +1,5 @@
 describe("Parser", function() {
     var parser;
-    var timer;
 
     beforeEach(function () {
         parser = new CurrencyParser();
