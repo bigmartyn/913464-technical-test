@@ -9,7 +9,8 @@ window.addEventListener('load', function() {
     var factorer = new CurrencyFactorer();
         
     function handleClick(e) {
-        var breakdown, comma, e, message;
+        var breakdown, comma, e, i, message;
+
         try {
             breakdown = factorer.factor(parser.parse(amountBox.value));
             message = amountBox.value + " = ";
