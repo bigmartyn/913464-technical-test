@@ -1,0 +1,22 @@
+h1 {
+    font-family: verdana, arial, sans-serif;
+}
+
+p {
+    font-family: verdana, arial, sans-serif;
+    font-size: 0.8em;
+    width: 40em;
+}
+
+#result {
+    font-family: verdana, arial, sans-serif;
+    font-size: 0.8em;
+}
+
+#apology {
+    color: goldenrod;
+}
+
+#main {
+    display: none;
+}
