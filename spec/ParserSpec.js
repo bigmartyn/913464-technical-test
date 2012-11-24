@@ -15,7 +15,7 @@ describe("Parser", function() {
         expect(function() { parser.parse("£1x.0p"); }).toThrow(new Error("non-numeric character"));
     });
 
-    it("should accept an single-digit string", function() {
+    it("should accept a single-digit string", function() {
         expect(parser.parse("4")).toEqual(4);
     });
 
@@ -30,10 +30,6 @@ describe("Parser", function() {
 
     it("should accept a bare number with hundreds and units", function() {
         expect(parser.parse("1.87")).toEqual(187);
-    });
-
-    it("should accept a number with a leading currency symbol", function() {
-        expect(parser.parse("£1.23")).toEqual(123);
     });
 
     it("should accept a number with a leading currency symbol", function() {
