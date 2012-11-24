@@ -22,18 +22,6 @@ class TestPage < BrowserContainer
     self
   end
 
-  def login_as(user, pass)
-    user_field.set user
-    password_field.set pass
-
-    login_button.click
-
-    next_page = UserPage.new(@browser)
-    Watir::Wait.until { next_page.loaded? }
-
-    next_page
-  end
-
   def amount_field
     @browser.text_field(:name => "amount")
   end
